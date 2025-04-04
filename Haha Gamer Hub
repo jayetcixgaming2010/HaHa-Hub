@@ -8170,42 +8170,6 @@ end);
 v37:Toggle("Use Gun", false, function(v427)
 	_G.UseGun = v427;
 end);
-v37:Label("Status Kisune Island: ");
-    function UpdateKitsune()
-        if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
-            v611:Set("Kisune Island : Spawn!");
-        else
-            v611:Set("Kisune Island : Don't Spawn!");
-        end
-    end
-    spawn(function()
-        pcall(function()
-            while wait() do
-                UpdateKitsune();
-            end
-        end);
-    end);
-v39:Toggle('Tween To Kisune Island", false, function(v612)
-    v502:OnChanged(function(v582)
-        _G.CollectAzure = v582;
-    end);
-    v17.ToggleCollectAzure:SetValue(false);
-    spawn(function()
-        while wait() do
-            if _G.CollectAzure then
-                pcall(function()
-                    if game:GetService("Workspace"):FindFirstChild("AttachedAzureEmber") then
-                        Tween(game:GetService("Workspace"):WaitForChild("EmberTemplate"):FindFirstChild("Part").CFrame);
-                    end
-                end);
-            end
-        end
-    end);
-end
-v39:Toggle("ESP Player", false, function(v428)
-        game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Net"):WaitForChild("RF/KitsuneStatuePray"):InvokeServer();
-    end
-});
 v39:Seperator("ESP MENU");
 v39:Toggle("ESP Player", false, function(v428)
 	ESPPlayer = v428;
