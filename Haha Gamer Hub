@@ -2857,14 +2857,13 @@ local v34 = v31:T("Setting Other", "rbxassetid://10734950309");
 local v35 = v31:T("Tab Item", "rbxassetid://10734975692");
 local v36 = v31:T("Race - Mirage", "rbxassetid://10747372167");
 local v37 = v31:T("Tab Event", "rbxassetid://10709783577");
-local v38 = v31:T("Leviathan", "rbxassetid://84760776805033");
-local v39 = v31:T("Tab Player", "rbxassetid://10747373176");
-local v40 = v31:T("Tab Visual", "rbxassetid://10723346959");
-local v41 = v31:T("Tab Raid", "rbxassetid://10723345749");
-local v42 = v31:T("Tab Teleport", "rbxassetid://10723434557");
-local v43 = v31:T("Tab Shop", "rbxassetid://10734952479");
-local v44 = v31:T("Devil Fruit", "rbxassetid://10709761889");
-local v45 = v31:T("Miscellaneous", "rbxassetid://10709782582");
+local v38 = v31:T("Tab Player", "rbxassetid://10747373176");
+local v39 = v31:T("Tab Visual", "rbxassetid://10723346959");
+local v40 = v31:T("Tab Raid", "rbxassetid://10723345749");
+local v41 = v31:T("Tab Teleport", "rbxassetid://10723434557");
+local v42 = v31:T("Tab Shop", "rbxassetid://10734952479");
+local v43 = v31:T("Devil Fruit", "rbxassetid://10709761889");
+local v44 = v31:T("Miscellaneous", "rbxassetid://10709782582");
 v32:Seperator("Join Discord");
 v32:Label("Everyone Goes Into Socialize");
 v32:Button("Copy Discord Link", function()
@@ -8171,41 +8170,12 @@ end);
 v37:Toggle("Use Gun", false, function(v427)
 	_G.UseGun = v427;
 end);
-v38:Button("Buy Chip Leviathan-Spy [Use 1.5K Fragments]", function()
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("InfoLeviathan", "2");
-end);
-v38:Label("Status Leviathan Chip: ");
-local v103 = v38:Label("Status Leviathan Chip: ");
-task.spawn(function()
-	while task.wait() do
-		pcall(function()
-			if game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("InfoLeviathan", "1") then
-				v103:Set("Leviathan Is Out There"); 
-			else
-				v103:Set("Leviathan Don't Spawn")
-			end
-		end);
-	end
-end);
-v38:Label("Mua chip được hay Không ");
-local v104 = v38:Label("Status Can Buy Chip Or No: ");
-task.spawn(function()
-	while task.wait() do
-		pcall(function()
-			if game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("InfoLeviathan", "1") then
-				v104:Set("I am readly"); 
-			else
-				v104:Set("I Don't Know")
-			end
-		end);
-	end
-end);
-v40:Seperator("ESP MENU");
-v40:Toggle("ESP Player", false, function(v428)
+v39:Seperator("ESP MENU");
+v39:Toggle("ESP Player", false, function(v428)
 	ESPPlayer = v428;
 	UpdatePlayerChams();
 end);
-v40:Toggle("ESP Island Kitsune", false, function(v429)
+v39:Toggle("ESP Island Kitsune", false, function(v429)
 	IslandESP = v429;
 	while IslandESP do
 		wait();
@@ -8244,22 +8214,22 @@ function UpdateIslandESPKitsune()
 		end);
 	end
 end
-v40:Toggle("ESP Chest", false, function(v430)
+v39:Toggle("ESP Chest", false, function(v430)
 	ChestESP = v430;
 	UpdateChestChams();
 end);
-v40:Toggle("ESP Fruit", false, function(v431)
+v39:Toggle("ESP Fruit", false, function(v431)
 	DevilFruitESP = v431;
 	while DevilFruitESP do
 		wait();
 		UpdateDevilChams();
 	end
 end);
-v40:Toggle("ESP Real Fruit", RealFruitESP, function(v432)
+v39:Toggle("ESP Real Fruit", RealFruitESP, function(v432)
 	RealFruitESP = v432;
 	UpdateRealFruitChams();
 end);
-v40:Toggle("ESP Flower", false, function(v433)
+v39:Toggle("ESP Flower", false, function(v433)
 	FlowerESP = v433;
 	UpdateFlowerChams();
 end);
@@ -8282,22 +8252,22 @@ spawn(function()
 		end
 	end
 end);
-v40:Toggle("ESP Island", IslandESP, function(v434)
+v39:Toggle("ESP Island", IslandESP, function(v434)
 	IslandESP = v434;
 	while IslandESP do
 		wait();
 		UpdateIslandESP();
 	end
 end);
-v40:Toggle("Esp Mystic Island", false, function(v435)
+v39:Toggle("Esp Mystic Island", false, function(v435)
 	MirageIslandESP = v435;
 	while MirageIslandESP do
 		wait();
 		UpdateIslandMirageESP();
 	end
 end);
-v40:Seperator("Troll");
-v40:Button("Rain Fruit", function()
+v39:Seperator("Troll");
+v39:Button("Rain Fruit", function()
 	for v822, v823 in pairs(game:GetObjects("rbxassetid://14759368201")[1]:GetChildren()) do
 		v823.Parent = game.Workspace.Map;
 		v823:MoveTo(game.Players.LocalPlayer.Character.PrimaryPart.Position + Vector3.new(math.random( -50, 50), 100, math.random( -50, 50)) );
@@ -8312,7 +8282,7 @@ v40:Button("Rain Fruit", function()
 		end);
 	end
 end);
-v40:Button("Instant Level/Beli/EXP", function()
+v39:Button("Instant Level/Beli/EXP", function()
 	local v436 = game:GetService("Players").LocalPlayer;
 	local v437 = require(game:GetService("ReplicatedStorage").Notification);
 	local v438 = v436:WaitForChild("Data");
@@ -8355,26 +8325,26 @@ v40:Button("Instant Level/Beli/EXP", function()
 		end
 	end
 end);
-v40:Textbox("Fake Level", "Fake Level", true, function(v445)
+v39:Textbox("Fake Level", "Fake Level", true, function(v445)
 	game:GetService("Players").LocalPlayer.Data.Level.Value = v445;
 end);
-v40:Textbox("Fake Exp", "Fake Exp", true, function(v447)
+v39:Textbox("Fake Exp", "Fake Exp", true, function(v447)
 	game:GetService("Players").LocalPlayer.Data.Exp.Value = v447;
 end);
-v40:Textbox("Fake Money", "Fake Money", true, function(v449)
+v39:Textbox("Fake Money", "Fake Money", true, function(v449)
 	game:GetService("Players").LocalPlayer.Data.Beli.Value = v449;
 end);
-v40:Textbox("Fake Fragment", "Fake Fragment", true, function(v451)
+v39:Textbox("Fake Fragment", "Fake Fragment", true, function(v451)
 	game:GetService("Players").LocalPlayer.Data.Fragments.Value = v451;
 end);
-v40:Textbox("Fake Points", "Fake Points", true, function(v453)
+v39:Textbox("Fake Points", "Fake Points", true, function(v453)
 	game:GetService("Players").LocalPlayer.Data.Points.Value = v453;
 end);
-v40:Textbox("Fake Bounty", "Fake Points", true, function(v455)
+v39:Textbox("Fake Bounty", "Fake Points", true, function(v455)
 	game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value = v455;
 end);
-v40:Seperator("Highlight");
-v40:Toggle("Show Chat disabled", _G.chat, function(v457)
+v39:Seperator("Highlight");
+v39:Toggle("Show Chat disabled", _G.chat, function(v457)
 	_G.chat = v457;
 	if (_G.chat == true) then
 		local v1437 = game:GetService("StarterGui");
@@ -8384,7 +8354,7 @@ v40:Toggle("Show Chat disabled", _G.chat, function(v457)
 		v1674:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true);
 	end
 end);
-v40:Toggle("Show leaderboard disabled", _G.leaderboard, function(v458)
+v39:Toggle("Show leaderboard disabled", _G.leaderboard, function(v458)
 	_G.leaderboard = v458;
 	if (_G.leaderboard == true) then
 		local v1438 = game:GetService("StarterGui");
@@ -8394,8 +8364,8 @@ v40:Toggle("Show leaderboard disabled", _G.leaderboard, function(v458)
 		game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true);
 	end
 end);
-v40:Seperator("Hack");
-v40:Button("Unlock Buso", function()
+v39:Seperator("Hack");
+v39:Button("Unlock Buso", function()
 	local v459 = "Buso";
 	if (type(v459) == "string") then
 		game:GetService("CollectionService"):AddTag(game.Players.LocalPlayer.Character, v459);
@@ -8405,7 +8375,7 @@ v40:Button("Unlock Buso", function()
 		end
 	end
 end);
-v40:Button("Unlock Soru", function()
+v39:Button("Unlock Soru", function()
 	local v460 = "Soru";
 	if (type(v460) == "string") then
 		game:GetService("CollectionService"):AddTag(game.Players.LocalPlayer.Character, v460);
@@ -8415,7 +8385,7 @@ v40:Button("Unlock Soru", function()
 		end
 	end
 end);
-v40:Button("Unlock Geppo", function()
+v39:Button("Unlock Geppo", function()
 	local v461 = "Geppo";
 	if (type(v461) == "string") then
 		game:GetService("CollectionService"):AddTag(game.Players.LocalPlayer.Character, v461);
@@ -8425,12 +8395,12 @@ v40:Button("Unlock Geppo", function()
 		end
 	end
 end);
-v40:Button("Max Zoom", function()
+v39:Button("Max Zoom", function()
 	while wait() do
 		game.Players.LocalPlayer.CameraMaxZoomDistance = 9223372036854718;
 	end
 end);
-v40:Button("Kaitun Cap", function(v462)
+v39:Button("Kaitun Cap", function(v462)
 	local v463 = require(game:GetService("Players").LocalPlayer.PlayerGui.Main.UIController.Inventory);
 	local v464 = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventory");
 	local v465 = {};
@@ -8602,12 +8572,12 @@ v40:Button("Kaitun Cap", function(v462)
 		game:GetService("Players").LocalPlayer.PlayerGui.Main.Compass:Destroy();
 	end);
 end);
-v40:Seperator("Graphic");
-v40:Button("Remove Fog ( Sea 3 )", function(v504)
+v39:Seperator("Graphic");
+v39:Button("Remove Fog ( Sea 3 )", function(v504)
 	game:GetService("Lighting").LightingLayers:Destroy();
 	game:GetService("Lighting").Sky:Destroy();
 end);
-v40:Toggle("Remove Fog", RemoveFog, function(v505)
+v39:Toggle("Remove Fog", RemoveFog, function(v505)
 	RemoveFog = v505;
 	if  not RemoveFog then
 		return;
@@ -8620,7 +8590,7 @@ v40:Toggle("Remove Fog", RemoveFog, function(v505)
 		end
 	end
 end);
-v40:Toggle("Remove Damage", true, function()
+v39:Toggle("Remove Damage", true, function()
 	for v864, v865 in pairs(game.Workspace:GetDescendants()) do
 		if (v865.Name == "DamageCounter") then
 			v865:Destroy();
@@ -8632,10 +8602,10 @@ v40:Toggle("Remove Damage", true, function()
 		end
 	end
 end);
-v40:Button("Unlock FPS", function()
+v39:Button("Unlock FPS", function()
 	setfpscap(9999999);
 end);
-v40:Button("Reduce Cpu", function()
+v39:Button("Reduce Cpu", function()
 	for v868, v869 in pairs(game.Workspace.Map:GetDescendants()) do
 		if ((v869.Name == "Tavern") or (v869.Name == "SmileFactory") or (v869.Name == "Tree") or (v869.Name == "Rocks") or (v869.Name == "PartHouse") or (v869.Name == "Hotel") or (v869.Name == "WallPiece") or (v869.Name == "MiddlePillars") or (v869.Name == "Cloud") or (v869.Name == "PluginGrass") or (v869.Name == "BigHouse") or (v869.Name == "SmallHouse") or (v869.Name == "Detail")) then
 			v869:Destroy();
@@ -8689,16 +8659,16 @@ v40:Button("Reduce Cpu", function()
 		end
 	end
 end);
-v40:Seperator("Abilities");
-v40:Toggle("Dodge No Cooldown", false, function(v519)
+v39:Seperator("Abilities");
+v39:Toggle("Dodge No Cooldown", false, function(v519)
 	nododgecool = v519;
 	NoDodgeCool();
 end);
-v40:Toggle("Infinite Energy", false, function(v520)
+v39:Toggle("Infinite Energy", false, function(v520)
 	InfiniteEnergy = v520;
 	v26 = v25.Character.Energy.Value;
 end);
-v40:Toggle("Infinite Ability", false, function(v522)
+v39:Toggle("Infinite Ability", false, function(v522)
 	InfAbility = v522;
 	if (value == false) then
 		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility"):Destroy();
@@ -8711,7 +8681,7 @@ spawn(function()
 		end
 	end
 end);
-v40:Toggle("Infinite Obversation Range", getgenv().InfiniteObRange, function(v523)
+v39:Toggle("Infinite Obversation Range", getgenv().InfiniteObRange, function(v523)
 	getgenv().InfiniteObRange = v523;
 	local v525 = game:GetService("Players").LocalPlayer.VisionRadius.Value;
 	while getgenv().InfiniteObRange do
@@ -8729,7 +8699,7 @@ v40:Toggle("Infinite Obversation Range", getgenv().InfiniteObRange, function(v52
 		end
 	end
 end);
-v40:Toggle("Infinite Geppo", getgenv().InfGeppo, function(v526)
+v39:Toggle("Infinite Geppo", getgenv().InfGeppo, function(v526)
 	getgenv().InfGeppo = v526;
 end);
 spawn(function()
@@ -8754,7 +8724,7 @@ spawn(function()
 		end);
 	end
 end);
-v40:Toggle("Infinite Soru", _G.Infsoru, function(v528)
+v39:Toggle("Infinite Soru", _G.Infsoru, function(v528)
 	_G.Infsoru = v528;
 end);
 spawn(function()
@@ -8779,7 +8749,7 @@ spawn(function()
 		end);
 	end
 end);
-v40:Button("Remove Lava", function()
+v39:Button("Remove Lava", function()
 	for v881, v882 in pairs(game.Workspace:GetDescendants()) do
 		if (v882.Name == "Lava") then
 			v882:Destroy();
@@ -8791,7 +8761,7 @@ v40:Button("Remove Lava", function()
 		end
 	end
 end);
-local v87 = v39:Label("Players");
+local v87 = v38:Label("Players");
 spawn(function()
 	while wait() do
 		pcall(function()
@@ -8811,17 +8781,17 @@ Playerslist = {};
 for v529, v530 in pairs(game:GetService("Players"):GetChildren()) do
 	table.insert(Playerslist, v530.Name);
 end
-local v88 = v39:Dropdown("Select Player", Playerslist, function(v531)
+local v88 = v38:Dropdown("Select Player", Playerslist, function(v531)
 	_G.SelectPly = v531;
 end);
-v39:Button("Refresh Player", function()
+v38:Button("Refresh Player", function()
 	Playerslist = {};
 	v88:Clear();
 	for v885, v886 in pairs(game:GetService("Players"):GetChildren()) do
 		v88:Add(v886.Name);
 	end
 end);
-v39:Toggle("Spectate Player", false, function(v532)
+v38:Toggle("Spectate Player", false, function(v532)
 	SpectatePlys = v532;
 	local v533 = game:GetService("Players").LocalPlayer.Character.Humanoid;
 	local v534 = game:GetService("Players"):FindFirstChild(_G.SelectPly);
@@ -8831,7 +8801,7 @@ v39:Toggle("Spectate Player", false, function(v532)
 	until SpectatePlys == false
 	game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid;
 end);
-v39:Toggle("Teleport", false, function(v537)
+v38:Toggle("Teleport", false, function(v537)
 	_G.TeleportPly = v537;
 	pcall(function()
 		if _G.TeleportPly then
@@ -8843,7 +8813,7 @@ v39:Toggle("Teleport", false, function(v537)
 		StopTween(_G.TeleportPly);
 	end);
 end);
-v39:Toggle("Teleport Player Bypass", false, function(v538)
+v38:Toggle("Teleport Player Bypass", false, function(v538)
 	_G.Teleport = v538;
 	if (_G.Teleport == false) then
 		game.Players:FindFirstChild(_G.SelectPly).Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1);
@@ -8856,11 +8826,11 @@ v39:Toggle("Teleport Player Bypass", false, function(v538)
 		game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672));
 	end
 end);
-v39:Seperator("Quest Player");
-v39:Button("Get Quest Elite Players", function()
+v38:Seperator("Quest Player");
+v38:Button("Get Quest Elite Players", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter");
 end);
-v39:Toggle("Auto Kill Player Quest", _G.PlayerHunter, function(v539)
+v38:Toggle("Auto Kill Player Quest", _G.PlayerHunter, function(v539)
 	_G.PlayerHunter = v539;
 	StopTween(_G.PlayerHunter);
 end);
@@ -8941,8 +8911,8 @@ spawn(function()
 		end);
 	end
 end);
-v39:Seperator("PvP");
-v39:Toggle("Aimbot Nearest", false, function(v540)
+v38:Seperator("PvP");
+v38:Toggle("Aimbot Nearest", false, function(v540)
 	_G.AimNearest = v540;
 end);
 local v76 = game:GetService("Players");
@@ -8994,7 +8964,7 @@ v90.__namecall = newcclosure(function(...)
 	return v91(...);
 end);
 setreadonly(v90, true);
-v39:Toggle("Enabled PvP", false, function(v545)
+v38:Toggle("Enabled PvP", false, function(v545)
 	_G.EnabledPvP = v545;
 end);
 spawn(function()
@@ -9008,11 +8978,11 @@ spawn(function()
 		end
 	end);
 end);
-v39:Button("Set Position Spawn", function()
+v38:Button("Set Position Spawn", function()
 	_G.Pos_Spawn = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
 	Com();
 end);
-v39:Toggle("Safe Mode", false, function(v547)
+v38:Toggle("Safe Mode", false, function(v547)
 	_G.Safe_Mode = v547;
 	StopTween(_G.Safe_Mode);
 end);
@@ -9025,12 +8995,12 @@ spawn(function()
 		end
 	end);
 end);
-v39:Button("Respawn", function()
+v38:Button("Respawn", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Pirates");
 	wait();
 end);
-v39:Seperator("Other Players");
-v39:Toggle("Auto Active V3", _G.ActiveV3, function(v548)
+v38:Seperator("Other Players");
+v38:Toggle("Auto Active V3", _G.ActiveV3, function(v548)
 	_G.ActiveV3 = v548;
 end);
 spawn(function()
@@ -9042,7 +9012,7 @@ spawn(function()
 		end
 	end);
 end);
-v39:Toggle("Auto Active V4", _G.ActiveV4, function(v549)
+v38:Toggle("Auto Active V4", _G.ActiveV4, function(v549)
 	_G.ActiveV4 = v549;
 end);
 spawn(function()
@@ -9059,7 +9029,7 @@ spawn(function()
 		end
 	end
 end);
-v39:Toggle("Walk on Water", true, function(v550)
+v38:Toggle("Walk on Water", true, function(v550)
 	_G.WalkWater = v550;
 end);
 spawn(function()
@@ -9073,7 +9043,7 @@ spawn(function()
 		end);
 	end
 end);
-v39:Toggle("NoClip", _G.NoClip, function(v551)
+v38:Toggle("NoClip", _G.NoClip, function(v551)
 	_G.NoClip = v551;
 end);
 spawn(function()
@@ -9087,8 +9057,8 @@ spawn(function()
 		end
 	end
 end);
-v39:Seperator("Stats");
-local v93 = v39:Label("Stat Points");
+v38:Seperator("Stats");
+local v93 = v38:Label("Stat Points");
 spawn(function()
 	while wait() do
 		pcall(function()
@@ -9096,11 +9066,11 @@ spawn(function()
 		end);
 	end
 end);
-local v94 = v39:Label("Melee: ");
-local v95 = v39:Label("Defense: ");
-local v96 = v39:Label("Sword: ");
-local v97 = v39:Label("Gun: ");
-local v98 = v39:Label("Fruit: ");
+local v94 = v38:Label("Melee: ");
+local v95 = v38:Label("Defense: ");
+local v96 = v38:Label("Sword: ");
+local v97 = v38:Label("Gun: ");
+local v98 = v38:Label("Fruit: ");
 spawn(function()
 	while wait() do
 		pcall(function()
@@ -9136,7 +9106,7 @@ spawn(function()
 		end);
 	end
 end);
-v39:Toggle("Auto Stats Kaitun", _G.Stats_Kaitun, function(v552)
+v38:Toggle("Auto Stats Kaitun", _G.Stats_Kaitun, function(v552)
 	_G.Stats_Kaitun = v552;
 end);
 spawn(function()
@@ -9168,19 +9138,19 @@ spawn(function()
 		end);
 	end
 end);
-v39:Toggle("Melee", false, function(v553)
+v38:Toggle("Melee", false, function(v553)
 	melee = v553;
 end);
-v39:Toggle("Defense", false, function(v554)
+v38:Toggle("Defense", false, function(v554)
 	defense = v554;
 end);
-v39:Toggle("Sword", false, function(v555)
+v38:Toggle("Sword", false, function(v555)
 	sword = v555;
 end);
-v39:Toggle("Gun", false, function(v556)
+v38:Toggle("Gun", false, function(v556)
 	gun = v556;
 end);
-v39:Toggle("Devil Fruit", false, function(v557)
+v38:Toggle("Devil Fruit", false, function(v557)
 	demonfruit = v557;
 end);
 PointStats = 100;
@@ -9230,7 +9200,7 @@ spawn(function()
 		end
 	end
 end);
-v41:Seperator("Raid");
+v40:Seperator("Raid");
 _G.SelectChip = selectraids or "" ;
 Raidslist = {};
 RaidsModule = require(game.ReplicatedStorage.Raids);
@@ -9240,10 +9210,10 @@ end
 for v560, v561 in pairs(RaidsModule.advancedRaids) do
 	table.insert(Raidslist, v561);
 end
-v41:Dropdown("Select Chips", Raidslist, function(v562)
+v40:Dropdown("Select Chips", Raidslist, function(v562)
 	_G.SelectChip = v562;
 end);
-v41:Toggle("Auto Select Dungeon", _G.SelectDungeon, function(v563)
+v40:Toggle("Auto Select Dungeon", _G.SelectDungeon, function(v563)
 	_G.SelectDungeon = v563;
 end);
 spawn(function()
@@ -9281,7 +9251,7 @@ spawn(function()
 		end
 	end
 end);
-v41:Toggle("Auto Buy Chip", _G.BuyChip, function(v564)
+v40:Toggle("Auto Buy Chip", _G.BuyChip, function(v564)
 	_G.BuyChip = v564;
 end);
 spawn(function()
@@ -9297,10 +9267,10 @@ spawn(function()
 		end
 	end);
 end);
-v41:Button("Buy Chip Select", function()
+v40:Button("Buy Chip Select", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc", "Select", _G.SelectChip);
 end);
-v41:Toggle("Auto Start Go To Dungeon", _G.StartRaid, function(v565)
+v40:Toggle("Auto Start Go To Dungeon", _G.StartRaid, function(v565)
 	_G.StartRaid = v565;
 end);
 spawn(function()
@@ -9320,14 +9290,14 @@ spawn(function()
 		end);
 	end
 end);
-v41:Button("Start Go To Dungeon", function()
+v40:Button("Start Go To Dungeon", function()
 	if World2 then
 		fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector);
 	elseif World3 then
 		fireclickdetector(game:GetService("Workspace").Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector);
 	end
 end);
-v41:Toggle("Auto Next Island And Kill Mob", false, function(v566)
+v40:Toggle("Auto Next Island And Kill Mob", false, function(v566)
 	_G.Dungeon = v566;
 	StopTween(_G.Dungeon);
 end);
@@ -9418,7 +9388,7 @@ spawn(function()
 		end
 	end);
 end);
-v41:Toggle("Auto Awakener", _G.Awakener, function(v569)
+v40:Toggle("Auto Awakener", _G.Awakener, function(v569)
 	_G.Awakener = v569;
 end);
 spawn(function()
@@ -9432,29 +9402,29 @@ spawn(function()
 	end);
 end);
 if World2 then
-	v41:Button("Teleport to Lab", function()
+	v40:Button("Teleport to Lab", function()
 		topos(CFrame.new( -6438.73535, 250.645355, -4501.50684));
 	end);
 elseif World3 then
-	v41:Button("Teleport to Lab", function()
+	v40:Button("Teleport to Lab", function()
 		topos(CFrame.new( -5017.40869, 314.844055, -2823.0127, -0.925743818, 4.482175e-8, -0.378151238, 4.5550315e-9, 1, 1.0737756e-7, 0.378151238, 9.768162e-8, -0.925743818));
 	end);
 end
 if World2 then
-	v41:Button("Awakening Room", function()
+	v40:Button("Awakening Room", function()
 		topos(CFrame.new(266.227783, 1.39509034, 1857.00732));
 	end);
 elseif World3 then
-	v41:Button("Awakening Room", function()
+	v40:Button("Awakening Room", function()
 		topos(CFrame.new( -11571.440429688, 49.172668457031, -7574.7368164062));
 	end);
 end
-v41:Seperator("Misc KoKo Sword");
-v41:Toggle("Auto Law", _G.OderSword, function(v570)
+v40:Seperator("Misc KoKo Sword");
+v40:Toggle("Auto Law", _G.OderSword, function(v570)
 	_G.OderSword = v570;
 	StopTween(_G.OderSword);
 end);
-v41:Toggle("Auto Law Hop", _G.OderSwordHop, function(v571)
+v40:Toggle("Auto Law Hop", _G.OderSwordHop, function(v571)
 	_G.OderSwordHop = v571;
 end);
 spawn(function()
@@ -9487,7 +9457,7 @@ spawn(function()
 		end
 	end
 end);
-v41:Button("Buy Microchip Law Boss", function()
+v40:Button("Buy Microchip Law Boss", function()
 	local v572 = {
 		[1] = "BlackbeardReward",
 		[2] = "Microchip",
@@ -9495,24 +9465,24 @@ v41:Button("Buy Microchip Law Boss", function()
 	};
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v572));
 end);
-v41:Button("Start Go To Raid Law Boss", function()
+v40:Button("Start Go To Raid Law Boss", function()
 	if World2 then
 		fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon.Button.Main.ClickDetector);
 	end
 end);
-v42:Seperator("World");
-v42:Button("Teleport To Old World", function()
+v41:Seperator("World");
+v41:Button("Teleport To Old World", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain");
 end);
-v42:Button("Teleport To Second Sea", function()
+v41:Button("Teleport To Second Sea", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa");
 end);
-v42:Button("Teleport To Third Sea", function()
+v41:Button("Teleport To Third Sea", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou");
 end);
-v42:Seperator("Teleport Fast");
+v41:Seperator("Teleport Fast");
 if World1 then
-	v42:Dropdown("Select Island", {
+	v41:Dropdown("Select Island", {
 		"Sky Island 1",
 		"Sky Island 2",
 		"Under Water Island",
@@ -9522,7 +9492,7 @@ if World1 then
 	end);
 end
 if World2 then
-	v42:Dropdown("Select Island", {
+	v41:Dropdown("Select Island", {
 		"Flamingo Mansion",
 		"Flamingo Room",
 		"Cursed Ship",
@@ -9532,7 +9502,7 @@ if World2 then
 	end);
 end
 if World3 then
-	v42:Dropdown("Select Island", {
+	v41:Dropdown("Select Island", {
 		"Mansion",
 		"Hydra Island",
 		"Castle on the Sea",
@@ -9542,7 +9512,7 @@ if World3 then
 		_G.SelectFast = v1448;
 	end);
 end
-v42:Toggle("Teleport Fast", false, function(v573)
+v41:Toggle("Teleport Fast", false, function(v573)
 	_G.TeleFast = v573;
 	if (_G.TeleFast == true) then
 		repeat
@@ -9577,9 +9547,9 @@ v42:Toggle("Teleport Fast", false, function(v573)
 		until  not _G.TeleFast
 	end
 end);
-v42:Seperator("Island");
+v41:Seperator("Island");
 if World1 then
-	v42:Dropdown("Select Island", {
+	v41:Dropdown("Select Island", {
 		"WindMill",
 		"Marine",
 		"Middle Town",
@@ -9601,7 +9571,7 @@ if World1 then
 	end);
 end
 if World2 then
-	v42:Dropdown("Select Island", {
+	v41:Dropdown("Select Island", {
 		"The Cafe",
 		"Frist Spot",
 		"Dark Area",
@@ -9620,7 +9590,7 @@ if World2 then
 	end);
 end
 if World3 then
-	v42:Dropdown("Select Island", {
+	v41:Dropdown("Select Island", {
 		"Mansion",
 		"Port Town",
 		"Great Tree",
@@ -9637,7 +9607,7 @@ if World3 then
 		_G.SelectIsland = v1451;
 	end);
 end
-v42:Toggle("Teleport", false, function(v574)
+v41:Toggle("Teleport", false, function(v574)
 	_G.TeleportIsland = v574;
 	if (_G.TeleportIsland == true) then
 		repeat
@@ -9729,20 +9699,20 @@ v42:Toggle("Teleport", false, function(v574)
 	end
 	StopTween(_G.TeleportIsland);
 end);
-v43:Seperator("Abilities");
-v43:Button("Buy Geppo [ 10,000 Beli ]", function()
+v42:Seperator("Abilities");
+v42:Button("Buy Geppo [ 10,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo");
 end);
-v43:Button("Buy Buso Haki [ 25,000 Beli ]", function()
+v42:Button("Buy Buso Haki [ 25,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso");
 end);
-v43:Button("Buy Soru [ 25,000 Beli ]", function()
+v42:Button("Buy Soru [ 25,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru");
 end);
-v43:Button("Buy Observation Haki [ 750,000 Beli ]", function()
+v42:Button("Buy Observation Haki [ 750,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Buy");
 end);
-v43:Toggle("Auto Buy Abilities", false, function(v575)
+v42:Toggle("Auto Buy Abilities", false, function(v575)
 	Abilities = v575;
 	while Abilities do
 		wait(0.1);
@@ -9751,75 +9721,75 @@ v43:Toggle("Auto Buy Abilities", false, function(v575)
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru");
 	end
 end);
-v43:Seperator("Fighting Style");
-v43:Button("Buy Black Leg [ 150,000 Beli ]", function()
+v42:Seperator("Fighting Style");
+v42:Button("Buy Black Leg [ 150,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg");
 end);
-v43:Button("Buy Electro [ 550,000 Beli ]", function()
+v42:Button("Buy Electro [ 550,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro");
 end);
-v43:Button("Buy Fishman Karate [ 750,000 Beli ]", function()
+v42:Button("Buy Fishman Karate [ 750,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate");
 end);
-v43:Button("Buy Dragon Claw [ 1,500 Fragments ]", function()
+v42:Button("Buy Dragon Claw [ 1,500 Fragments ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "DragonClaw", "1");
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "DragonClaw", "2");
 end);
-v43:Button("Buy Superhuman [ 3,000,000 Beli ]", function()
+v42:Button("Buy Superhuman [ 3,000,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman");
 end);
-v43:Button("Buy Death Step [ 5,000 Fragments 5,000,000 Beli ]", function()
+v42:Button("Buy Death Step [ 5,000 Fragments 5,000,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep");
 end);
-v43:Button("Buy Sharkman Karate [ 5,000 Fragments 2,500,000 Beli ]", function()
+v42:Button("Buy Sharkman Karate [ 5,000 Fragments 2,500,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true);
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate");
 end);
-v43:Button("Buy Electric Claw [ 5,000 Fragments 3,000,000 Beli ]", function()
+v42:Button("Buy Electric Claw [ 5,000 Fragments 3,000,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw");
 end);
-v43:Button("Buy Dragon Talon [ 5,000 Fragments 3,000,000 Beli ]", function()
+v42:Button("Buy Dragon Talon [ 5,000 Fragments 3,000,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon");
 end);
-v43:Button("Buy God Human [ 5,000 Fragments 5,000,000 Beli ]", function()
+v42:Button("Buy God Human [ 5,000 Fragments 5,000,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman");
 end);
-v43:Button("Buy Sanguine Art [ 5,000 Fragments $5,000,000 Beli ]", function()
+v42:Button("Buy Sanguine Art [ 5,000 Fragments $5,000,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt", true);
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt");
 end);
-v43:Seperator(" Sword ");
-v43:Button("Cutlass [ 1,000 Beli ]", function()
+v42:Seperator(" Sword ");
+v42:Button("Cutlass [ 1,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cutlass");
 end);
-v43:Button("Katana [ 1,000 Beli ]", function()
+v42:Button("Katana [ 1,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Katana");
 end);
-v43:Button("Iron Mace [ 25,000 Beli ]", function()
+v42:Button("Iron Mace [ 25,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Iron Mace");
 end);
-v43:Button("Dual Katana [ 12,000 Beli ]", function()
+v42:Button("Dual Katana [ 12,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Duel Katana");
 end);
-v43:Button("Triple Katana [ 60,000 Beli ]", function()
+v42:Button("Triple Katana [ 60,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Triple Katana");
 end);
-v43:Button("Pipe [ 100,000 Beli ]", function()
+v42:Button("Pipe [ 100,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Pipe");
 end);
-v43:Button("Dual-Headed Blade [ 400,000 Beli ]", function()
+v42:Button("Dual-Headed Blade [ 400,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Dual-Headed Blade");
 end);
-v43:Button("Bisento [ 1,200,000 Beli ]", function()
+v42:Button("Bisento [ 1,200,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Bisento");
 end);
-v43:Button("Soul Cane [ 750,000 Beli ]", function()
+v42:Button("Soul Cane [ 750,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Soul Cane");
 end);
-v43:Button("Pole v.2 [ 5,000 Fragments ]", function()
+v42:Button("Pole v.2 [ 5,000 Fragments ]", function()
 	game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ThunderGodTalk");
 end);
-v43:Toggle("Yama Sword [ Elite Hunter 30 ]", _G.Yama, function(v576)
+v42:Toggle("Yama Sword [ Elite Hunter 30 ]", _G.Yama, function(v576)
 	_G.Yama = v576;
 end);
 spawn(function()
@@ -9834,34 +9804,34 @@ spawn(function()
 		end
 	end
 end);
-v43:Seperator(" Gun ");
-v43:Button("Slingshot [ 5,000 Beli ]", function()
+v42:Seperator(" Gun ");
+v42:Button("Slingshot [ 5,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Slingshot");
 end);
-v43:Button("Musket [ 8,000 Beli ]", function()
+v42:Button("Musket [ 8,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Musket");
 end);
-v43:Button("Flintlock [ 10,500 Beli ]", function()
+v42:Button("Flintlock [ 10,500 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Flintlock");
 end);
-v43:Button("Refined Slingshot [ 30,000 Beli ]", function()
+v42:Button("Refined Slingshot [ 30,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Refined Flintlock");
 end);
-v43:Button("Refined Flintlock [ 65,000 Beli ]", function()
+v42:Button("Refined Flintlock [ 65,000 Beli ]", function()
 	local v577 = {
 		[1] = "BuyItem",
 		[2] = "Refined Flintlock"
 	};
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v577));
 end);
-v43:Button("Cannon [ 100,000 Beli ]", function()
+v42:Button("Cannon [ 100,000 Beli ]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cannon");
 end);
-v43:Button("Kabucha [ 1,500 Fragments]", function()
+v42:Button("Kabucha [ 1,500 Fragments]", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "1");
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "2");
 end);
-v43:Button("Bizarre Rifle [ 250 Ectoplasm ]", function()
+v42:Button("Bizarre Rifle [ 250 Ectoplasm ]", function()
 	local v578 = "Ectoplasm";
 	local v579 = "Buy";
 	local v580 = 1;
@@ -9873,45 +9843,45 @@ v43:Button("Bizarre Rifle [ 250 Ectoplasm ]", function()
 	local v581 = game:GetService("ReplicatedStorage").Remotes['CommF_'];
 	v581:InvokeServer(v578, v579, v580);
 end);
-v43:Seperator("Stats");
-v43:Button("Reset Stats (Use 2.5K Fragments)", function()
+v42:Seperator("Stats");
+v42:Button("Reset Stats (Use 2.5K Fragments)", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Refund", "1");
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Refund", "2");
 end);
-v43:Button("Random Race (Use 3K Fragments)", function()
+v42:Button("Random Race (Use 3K Fragments)", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Reroll", "1");
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Reroll", "2");
 end);
-v43:Button("Buy Cyborg (Use 2.5K Fragments)", function()
+v42:Button("Buy Cyborg (Use 2.5K Fragments)", function()
 	local v582 = {
 		[1] = "CyborgTrainer",
 		[2] = "Buy"
 	};
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v582));
 end);
-v43:Seperator("Accessories");
-v43:Button("Black Cape [ 50,000 Beli ]", function()
+v42:Seperator("Accessories");
+v42:Button("Black Cape [ 50,000 Beli ]", function()
 	local v583 = {
 		[1] = "BuyItem",
 		[2] = "Black Cape"
 	};
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v583));
 end);
-v43:Button("Swordsman Hat [ 150k Beli ]", function()
+v42:Button("Swordsman Hat [ 150k Beli ]", function()
 	local v584 = {
 		[1] = "BuyItem",
 		[2] = "Swordsman Hat"
 	};
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v584));
 end);
-v43:Button("Tomoe Ring [ 500k Beli ]", function()
+v42:Button("Tomoe Ring [ 500k Beli ]", function()
 	local v585 = {
 		[1] = "BuyItem",
 		[2] = "Tomoe Ring"
 	};
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v585));
 end);
-v44:Seperator("Sniper");
+v43:Seperator("Sniper");
 FruitList = {
 	"Bomb-Bomb",
 	"Spike-Spike",
@@ -9958,17 +9928,17 @@ for v586, v587 in next, v99 do
 	end
 end
 _G.SelectFruit = "";
-v44:Dropdown("Select Fruits Sniper", Table_DevilFruitSniper, function(v588)
+v43:Dropdown("Select Fruits Sniper", Table_DevilFruitSniper, function(v588)
 	_G.SelectFruit = v588;
 end);
-v44:Toggle("Auto Buy Fruit Sniper", _G.BuyFruitSniper, function(v589)
+v43:Toggle("Auto Buy Fruit Sniper", _G.BuyFruitSniper, function(v589)
 	_G.BuyFruitSniper = v589;
 end);
-v44:Seperator("Others");
-v44:Dropdown("Select Fruits Eat", Table_DevilFruitSniper, function(v590)
+v43:Seperator("Others");
+v43:Dropdown("Select Fruits Eat", Table_DevilFruitSniper, function(v590)
 	_G.SelectFruitEat = v590;
 end);
-v44:Toggle("Auto Eat Fruit", _G.EatFruit, function(v591)
+v43:Toggle("Auto Eat Fruit", _G.EatFruit, function(v591)
 	_G.EatFruit = v591;
 end);
 spawn(function()
@@ -9990,14 +9960,14 @@ spawn(function()
 		end
 	end);
 end);
-v44:Button("Random Fruit", function()
+v43:Button("Random Fruit", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin", "Buy");
 end);
-v44:Button("Open Devil Shop", function()
+v43:Button("Open Devil Shop", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits");
 	game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true;
 end);
-v44:Toggle("Auto Store Fruit", _G.StoreFruit, function(v593)
+v43:Toggle("Auto Store Fruit", _G.StoreFruit, function(v593)
 	_G.StoreFruit = v593;
 end);
 spawn(function()
@@ -10107,7 +10077,7 @@ spawn(function()
 		end
 	end
 end);
-v44:Toggle("Bring to Fruit", false, function(v594)
+v43:Toggle("Bring to Fruit", false, function(v594)
 	_G.Grabfruit = v594;
 end);
 spawn(function()
@@ -10121,7 +10091,7 @@ spawn(function()
 		end
 	end
 end);
-v44:Toggle("Tween to Fruit", false, function(v595)
+v43:Toggle("Tween to Fruit", false, function(v595)
 	_G.Tweenfruit = v595;
 	StopTween(_G.Tweenfruit);
 end);
@@ -10136,14 +10106,14 @@ spawn(function()
 		end
 	end
 end);
-v45:Seperator("Server");
-v45:Button("Rejoin Server", function()
+v44:Seperator("Server");
+v44:Button("Rejoin Server", function()
 	game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer);
 end);
-v45:Button("Server Hop", function()
+v44:Button("Server Hop", function()
 	Hop();
 end);
-v45:Button("Hop To Lower Player", function()
+v44:Button("Hop To Lower Player", function()
 	getgenv().AutoTeleport = true;
 	getgenv().DontTeleportTheSameNumber = true;
 	getgenv().CopytoClipboard = false;
@@ -10189,35 +10159,35 @@ v45:Button("Hop To Lower Player", function()
 		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, v601);
 	end
 end);
-v45:Button("Copy Job Id", function()
+v44:Button("Copy Job Id", function()
 	setclipboard(tostring(game.JobId));
 end);
-v45:Textbox("Place Job Id", "Place Job Id", true, function(v603)
+v44:Textbox("Place Job Id", "Place Job Id", true, function(v603)
 	_G.Job = v603;
 end);
-v45:Button("Join Sever", function()
+v44:Button("Join Sever", function()
 	game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId, _G.Job, game.Players.LocalPlayer);
 end);
-v45:Seperator("Misc");
-v45:Button("Title Name", function()
+v44:Seperator("Misc");
+v44:Button("Title Name", function()
 	local v604 = {
 		[1] = "getTitles"
 	};
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v604));
 	game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true;
 end);
-v45:Button("Color Haki", function()
+v44:Button("Color Haki", function()
 	game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true;
 end);
-v45:Seperator("Teams");
-v45:Button("Join Pirates Team", function()
+v44:Seperator("Teams");
+v44:Button("Join Pirates Team", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Pirates");
 end);
-v45:Button("Join Marines Team", function()
+v44:Button("Join Marines Team", function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Marines");
 end);
-v45:Seperator(" Anti AFK ");
-v45:Toggle("Anti AFK", true, function()
+v44:Seperator(" Anti AFK ");
+v44:Toggle("Anti AFK", true, function()
 	local v607 = game:GetService("VirtualUser");
 	repeat
 		wait();
@@ -10229,8 +10199,8 @@ v45:Toggle("Anti AFK", true, function()
 		v607:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame);
 	end);
 end);
-v45:Seperator(" Anti Band ");
-v45:Toggle("Anti Band", true, function()
+v44:Seperator(" Anti Band ");
+v44:Toggle("Anti Band", true, function()
     _G.AntiBand = v384;
 end);
 local v610 = {
@@ -10249,7 +10219,7 @@ spawn(function()
         end
     end
 end);
-v45:Seperator("Codes");
+v44:Seperator("Codes");
 local v100 = {
 	"KITTGAMING",
 	"ENYU_IS_PRO",
@@ -10271,7 +10241,7 @@ local v100 = {
 	"TY_FOR_WATCHING",
 	"STARCODEHEO"
 };
-v45:Button("Redeem All Codes", function()
+v44:Button("Redeem All Codes", function()
 	function RedeemCode(v899)
 		game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(v899);
 	end
@@ -10279,18 +10249,18 @@ v45:Button("Redeem All Codes", function()
 		RedeemCode(v901);
 	end
 end);
-v45:Dropdown("Selected Codes Reset stat", {
+v44:Dropdown("Selected Codes Reset stat", {
 	"NOOB_REFUND",
 	"SUB2GAMERROBOT_RESET1",
 	"Sub2UncleKizaru"
 }, function(v608)
 	_G.CodeSelect = v608;
 end);
-v45:Button("Redeem Code (Selected Codes)", function()
+v44:Button("Redeem Code (Selected Codes)", function()
 	game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(_G.CodeSelect);
 end);
-v45:Seperator("State");
-v45:Dropdown("Select Haki State", {
+v44:Seperator("State");
+v44:Dropdown("Select Haki State", {
 	"State 0",
 	"State 1",
 	"State 2",
@@ -10300,7 +10270,7 @@ v45:Dropdown("Select Haki State", {
 }, function(v609)
 	_G.SelectStateHaki = v609;
 end);
-v45:Button("Change Buso Haki State", function()
+v44:Button("Change Buso Haki State", function()
 	if (_G.SelectStateHaki == "State 0") then
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 0);
 	elseif (_G.SelectStateHaki == "State 1") then
