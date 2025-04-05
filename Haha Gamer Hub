@@ -7784,6 +7784,7 @@ if World3 then
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("UpgradeRace", "Buy");
 	end);
 end
+v37:Seperator("Prehistoric Island");
 local v74 = v37:Label("Status Prehistoric Island: ");
 task.spawn(function()
 	while task.wait() do
@@ -8169,6 +8170,126 @@ v37:Toggle("Use Sword", false, function(v426)
 end);
 v37:Toggle("Use Gun", false, function(v427)
 	_G.UseGun = v427;
+end);
+v37:Seperator("Frozen Dimension Island");
+v37:Label("Status Leviathan Chip: ");
+local v103 = v37:Label("Status Leviathan Chip: ");
+task.spawn(function()
+    while task.wait() do
+        pcall(function()
+            if game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("InfoLeviathan", "1") then
+                v103:Set("Leviathan Is Out There"); 
+            else
+                v103:Set("Leviathan Don't Spawn")
+            end
+        end);
+    end
+end);
+v37:Label("Mua chip được hay Không ");
+local v104 = v37:Label("Status Can Buy Chip Or No: ");
+task.spawn(function()
+    while task.wait() do
+        pcall(function()
+            if game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("InfoLeviathan", "1") then
+                v104:Set("I am readly"); 
+            else
+                v104:Set("I Don't Know")
+            end
+        end);
+    end
+end);
+v37:Button("Buy Chip Leviathan-Spy [Use 1.5K Fragments]", function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("InfoLeviathan", "2");
+end);
+v37:Toggle("Find Leviathan", false, function(v611)
+	_G.AutoFindFrozen = v611;
+end);
+local v105 = {};
+local v106 = false;
+local v107 = false;
+v77.RenderStepped:Connect(function()
+	if not _G.AutoFindFrozen then
+		v107 = false;
+		return;
+	end
+	local v612 = v76.LocalPlayer;
+	local v613 = v612.Character;
+	if (not v613 or not v613:FindFirstChild("Humanoid")) then
+		return;
+	end
+	local function v614()
+		if v106 then
+			return;
+		end
+		v106 = true;
+		for v813, v814 in pairs(v408) do
+			if (v814 and v814.Parent and (v814.Name == "VehicleSeat") and not v814.Occupant) then
+				Tween2(v814.CFrame);
+				break;
+			end
+		end
+		v106 = false;
+	end
+	local v615 = v613.Humanoid;
+	local v616 = false;
+	local v617 = nil;
+	for v806, v807 in pairs(v79.Boats:GetChildren()) do
+		local v808 = v807:FindFirstChild("VehicleSeat");
+		if (v808 and (v808.Occupant == v615)) then
+			v616 = true;
+			v617 = v808;
+			v105[v807.Name] = v905;
+		elseif (v808 and (v808.Occupant == nil)) then
+			v614();
+		end
+	end
+	if not v616 then
+		return;
+	end
+	v617.MaxSpeed = v80;
+	v617.CFrame = CFrame.new(Vector3.new(v617.Position.X, v617.Position.Y, v617.Position.Z)) * v617.CFrame.Rotation ;
+	v78:SendKeyEvent(true, "W", false, game);
+	for v1456, v1457 in pairs(v79.Boats:GetDescendants()) do
+		if v1457:IsA("BasePart") then
+			v1457.CanCollide = false;
+		end
+	end
+	for v1458, v1459 in pairs(v613:GetDescendants()) do
+		if v710:IsA("BasePart") then
+			v710.CanCollide = false;
+		end
+	end
+	local v620 = {
+		"ShipwreckIsland",
+		"SandIsland",
+		"TreeIsland",
+		"TinyIsland",
+		"MysticIsland",
+		"KitsuneIsland",
+		"PrehistoricIsland"
+	};
+	for v1460, v1460 in ipairs(v620) do
+		local v1461 = v79.Map:FindFirstChild(v1460);
+		if (v1461 and v1461:IsA("Model")) then
+			v1461:Destroy();
+		end
+	end
+	local v621 = v79.Map:FindFirstChild("FrozenDimension");
+	if v621 then
+		v78:SendKeyEvent(false, "W", false, game);
+		_G.AutoFindFrozen = false;
+		if not v107 then
+			local v102 = game:GetService("Players");
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+	            Title = "Haha Gamer Hub",
+	            Text = "Đã tìm thấy đảo Leviathan",
+	            Icon = "rbxthumb://type=Asset&id=135920566704171&w=150&h=150",
+	            Duration = 10
+            });
+			v107 = true;
+		end
+		return;
+	end
 end);
 v39:Seperator("ESP MENU");
 v39:Toggle("ESP Player", false, function(v428)
@@ -10201,7 +10322,7 @@ v44:Toggle("Anti AFK", true, function()
 end);
 v44:Seperator(" Anti Band ");
 v44:Toggle("Anti Band", true, function()
-    _G.AntiBand = v384;
+    _G.AntiBand = v610;
 end);
 local v610 = {
     17884881,
