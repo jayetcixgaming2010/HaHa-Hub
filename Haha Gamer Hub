@@ -1,3 +1,10 @@
+loadstring(game:HttpGet("https://pastefy.app/tgBsrgBP/raw"))()
+if getgenv().Team == "Pirates" then
+    game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("SetTeam", "Pirates")
+elseif getgenv().Team == "Marines" then
+    game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("SetTeam", "Marines")
+end
+wait(4)
 local MatsuneA1 = {};
 
 MatsuneA1["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
@@ -31,7 +38,7 @@ MatsuneA1["5"] = Instance.new("UIStroke", MatsuneA1["4"]);
 MatsuneA1["5"]["Color"] = Color3.fromRGB(255, 0, 0);
 
 MatsuneA1["6"] = Instance.new("UIStroke", MatsuneA1["2"]);
-MatsuneA1["6"]["Color"] = Color3.fromRGB(169, 238, 8);
+MatsuneA1["6"]["Color"] = Color3.fromRGB(242, 41, 108);
 
 local function StopTween()
     if _G.StopTween then
@@ -61,162 +68,6 @@ end
 MatsuneA1["4"].MouseButton1Click:Connect(function()
     StopTween()
 end)
-
-_G.FastAttack = true
-
-if _G.FastAttack then
-    local _ENV = (getgenv or getrenv or getfenv)()
-
-    local function SafeWaitForChild(parent, childName)
-        local success, result = pcall(function()
-            return parent:WaitForChild(childName)
-        end)
-        if not success or not result then
-            warn("noooooo: " .. childName)
-        end
-        return result
-    end
-
-    local function WaitChilds(path, ...)
-        local last = path
-        for _, child in {...} do
-            last = last:FindFirstChild(child) or SafeWaitForChild(last, child)
-            if not last then break end
-        end
-        return last
-    end
-
-    local VirtualInputManager = game:GetService("VirtualInputManager")
-    local CollectionService = game:GetService("CollectionService")
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    local TeleportService = game:GetService("TeleportService")
-    local RunService = game:GetService("RunService")
-    local Players = game:GetService("Players")
-    local Player = Players.LocalPlayer
-
-    if not Player then
-        warn("Không tìm thấy người chơi cục bộ.")
-        return
-    end
-
-    local Remotes = SafeWaitForChild(ReplicatedStorage, "Remotes")
-    if not Remotes then return end
-
-    local Validator = SafeWaitForChild(Remotes, "Validator")
-    local CommF = SafeWaitForChild(Remotes, "CommF_")
-    local CommE = SafeWaitForChild(Remotes, "CommE")
-
-    local ChestModels = SafeWaitForChild(workspace, "ChestModels")
-    local WorldOrigin = SafeWaitForChild(workspace, "_WorldOrigin")
-    local Characters = SafeWaitForChild(workspace, "Characters")
-    local Enemies = SafeWaitForChild(workspace, "Enemies")
-    local Map = SafeWaitForChild(workspace, "Map")
-
-    local EnemySpawns = SafeWaitForChild(WorldOrigin, "EnemySpawns")
-    local Locations = SafeWaitForChild(WorldOrigin, "Locations")
-
-    local RenderStepped = RunService.RenderStepped
-    local Heartbeat = RunService.Heartbeat
-    local Stepped = RunService.Stepped
-
-    local Modules = SafeWaitForChild(ReplicatedStorage, "Modules")
-    local Net = SafeWaitForChild(Modules, "Net")
-
-    local sethiddenproperty = sethiddenproperty or function(...) return ... end
-    local setupvalue = setupvalue or (debug and debug.setupvalue)
-    local getupvalue = getupvalue or (debug and debug.getupvalue)
-
-    local Settings = {
-        AutoClick = true,
-        ClickDelay = 0
-    }
-
-    local Module = {}
-
-    Module.FastAttack = (function()
-        if _ENV.rz_FastAttack then
-            return _ENV.rz_FastAttack
-        end
-
-        local FastAttack = {
-            Distance = 100,
-            attackMobs = true,
-            attackPlayers = true,
-            Equipped = nil
-        }
-
-        local RegisterAttack = SafeWaitForChild(Net, "RE/RegisterAttack")
-        local RegisterHit = SafeWaitForChild(Net, "RE/RegisterHit")
-
-        local function IsAlive(character)
-            return character and character:FindFirstChild("Humanoid") and character.Humanoid.Health > 0
-        end
-
-        local function ProcessEnemies(OthersEnemies, Folder)
-            local BasePart = nil
-            for _, Enemy in Folder:GetChildren() do
-                local Head = Enemy:FindFirstChild("Head")
-                if Head and IsAlive(Enemy) and Player:DistanceFromCharacter(Head.Position) < FastAttack.Distance then
-                    if Enemy ~= Player.Character then
-                        table.insert(OthersEnemies, { Enemy, Head })
-                        BasePart = Head
-                    end
-                end
-            end
-            return BasePart
-        end
-
-        function FastAttack:Attack(BasePart, OthersEnemies)
-            if not BasePart or #OthersEnemies == 0 then return end
-            RegisterAttack:FireServer(Settings.ClickDelay or 0)
-            RegisterHit:FireServer(BasePart, OthersEnemies)
-        end
-
-        function FastAttack:AttackNearest()
-            local OthersEnemies = {}
-            local Part1 = ProcessEnemies(OthersEnemies, Enemies)
-            local Part2 = ProcessEnemies(OthersEnemies, Characters)
-
-            local character = Player.Character
-            if not character then return end
-            local equippedWeapon = character:FindFirstChildOfClass("Tool")
-
-            if equippedWeapon and equippedWeapon:FindFirstChild("LeftClickRemote") then
-                for _, enemyData in ipairs(OthersEnemies) do
-                    local enemy = enemyData[1]
-                    local direction = (enemy.HumanoidRootPart.Position - character:GetPivot().Position).Unit
-                    pcall(function()
-                        equippedWeapon.LeftClickRemote:FireServer(direction, 1)
-                    end)
-                end
-            elseif #OthersEnemies > 0 then
-                self:Attack(Part1 or Part2, OthersEnemies)
-            else
-                task.wait(0)
-            end
-        end
-
-        function FastAttack:BladeHits()
-            local Equipped = IsAlive(Player.Character) and Player.Character:FindFirstChildOfClass("Tool")
-            if Equipped and Equipped.ToolTip ~= "Gun" then
-                self:AttackNearest()
-            else
-                task.wait(0)
-            end
-        end
-
-        task.spawn(function()
-            while task.wait(Settings.ClickDelay) do
-                if Settings.AutoClick then
-                    FastAttack:BladeHits()
-                end
-            end
-        end)
-
-        _ENV.rz_FastAttack = FastAttack
-        return FastAttack
-    end)()
-end
    
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
@@ -1102,7 +953,7 @@ function UpdatePlayerChams()
 						name.BackgroundTransparency = 1
 						name.TextStrokeTransparency = 0.5
 						if v.Team == game.Players.LocalPlayer.Team then
-							name.TextColor3 = Color3.new(0,255,0)
+							name.TextColor3 = Color3.new(242, 41, 108)
 						else
 							name.TextColor3 = Color3.new(255,0,0)
 						end
@@ -3067,11 +2918,11 @@ end
 
 local library = {}
 
-_G.Color = Color3.fromRGB(154, 240, 17) 
-_G.imageLogo = "rbxassetid://12940626152"
-_G.Logo = "rbxassetid://12940626152"
-_G.NameHub = "Made By Dragon Toro" -- ชื่อ Hub
-_G.Title = "Matsune Hub Script blox fruits" -- คำอธิบาย
+_G.Color = Color3.fromRGB(242, 41, 108) 
+_G.imageLogo = "rbxassetid://93006432813553"
+_G.Logo = "rbxassetid://93006432813553"
+_G.NameHub = "Made By Kiên" -- 
+_G.Title = "Haha Gamer Hub Script blox fruits" -- 
 -----------------------------------------------------------------
 
 local isUIEnabled = true 
@@ -3106,7 +2957,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.120833337 - 0.10, 0, 0.0952890813 + 0.01, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
-ImageButton.Image = "rbxassetid://100666805146072"
+ImageButton.Image = "rbxassetid://93006432813553"
 
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
@@ -3368,7 +3219,7 @@ end)
 
 -- Click event: copy Discord link
 Discord.MouseButton1Click:Connect(function()
-    (setclipboard or toclipboard)("https://discord.gg/SpJQ3XVEJ8")
+    (setclipboard or toclipboard)("https://discord.gg/e6yjqPzWqT")
     wait(.1)
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Discord",
@@ -3705,7 +3556,7 @@ UICorner.Parent = ImageButton
 			            -- Set the color to a single color (e.g., green)
 			            game:GetService('TweenService'):Create(
     			            Line, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),
- 			               {BackgroundColor3 = Color3.fromRGB(0, 255, 0)} -- green color
+ 			               {BackgroundColor3 = Color3.fromRGB(242, 41, 108)} -- green color
 			            ):Play() 
 			            wait(0.5)            
 			        end)
@@ -3823,12 +3674,12 @@ UICorner.Parent = ImageButton
 
 				Button_2.Name = "Button"
 				Button_2.Parent = SectionContainer
-				Button_2.BackgroundColor3 = Color3.fromRGB(154, 240, 17)
+				Button_2.BackgroundColor3 = Color3.fromRGB(242, 41, 108)
 				Button_2.Size = UDim2.new(0.975000024, 0, 0, 25)
 				Button_2.ZIndex = 16
 
 				if default then
-					Button_2.BackgroundColor3 = Color3.fromRGB(154, 240, 17)
+					Button_2.BackgroundColor3 = Color3.fromRGB(242, 41, 108)
 				else
 					Button_2.BackgroundColor3 = _G.Color
 				end
@@ -3874,7 +3725,7 @@ UICorner.Parent = ImageButton
 						Button_2,
 						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 						{
-							BackgroundColor3 = state and _G.Color or Color3.fromRGB(154, 240, 17)
+							BackgroundColor3 = state and _G.Color or Color3.fromRGB(242, 41, 108)
 						}
 					):Play()
 					callback(default)
@@ -3885,7 +3736,7 @@ UICorner.Parent = ImageButton
 						Button_2,
 						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 						{
-							BackgroundColor3 = state and Color3.fromRGB(154, 240, 17) or _G.Color
+							BackgroundColor3 = state and Color3.fromRGB(242, 41, 108) or _G.Color
 						}
 					):Play()
 					callback(state)
@@ -10375,9 +10226,9 @@ spawn(function()
 		while wait() do
 			for i, v in pairs(game.Workspace:GetChildren()) do
 				if string.find(v.Name, "Fruit") then
-					FindFruit:Set("🍏 Find " .. v.Name);
+					FindFruit:Set("🍎 Find " .. v.Name);
 				else
-					FindFruit:Set("🍏 Not Have Fruits");
+					FindFruit:Set("🍎 Not Have Fruits");
 				end;
 			end;
 		end;
@@ -11640,9 +11491,66 @@ end)
             end
          end)
      end)
-     
-StarterGui:SetCore("SendNotification", {
-    Title = "Haha Gamer Dead Rails Script",
-    Text = "Loaded successfully! Use the UI to toggle features.",
-    Duration = 5
-})     
+
+     local executor = getexecutorname() or identifyexecutor()
+     if executor then
+         if string.find(executor, "Velocity") or string.find(executor, "Wave") or string.find(executor, "Arceus") or string.find(executor,"Swift") or string.find(executor, "Arceus") or string.find(executor, "Arceus") or string.find(executor,"AWP") or string.find(executor, "Delta") or string.find(executor, "Fluxus") or string.find(executor, "CodeX") or string.find(executor, "Codex") or string.find(executor, "Triagon") or string.find(executor, "Krnl") or string.find(executor, "FrostWare") or string.find(executor, "Frostware") or string.find(executor, "Nebula") or string.find(executor, "Ronix") or string.find(executor, "Atlantis") or string.find(executor, "Trigon") or string.find(executor, "Evon") or string.find(executor, "Vegax") or string.find(executor, "Cryptic") or string.find(executor, "Dymanic") or string.find(executor, "SynapeX") or string.find(executor, "Cubix") or string.find(executor, "SynapeX") or string.find(executor, "Revelix") or string.find(executor, "Xeno") then 
+             print("Supported Executor!")
+         elseif string.find(executor, "Flexer") then
+             game.Players.LocalPlayer:Kick("Very Trash Executor")
+         elseif string.find(executor, "Argon") then
+             game.Players.LocalPlayer:Kick("Trash Executor")
+         elseif string.find(executor, "Nezur") then
+             game.Players.LocalPlayer:Kick("Not supported Fake Executor")
+         elseif string.find(executor,"TNG") then
+             game.Players.LocalPlayer:Kick("Not supported skid executor!")
+         elseif string.find(executor,"Solara") then
+             game.Players.LocalPlayer:Kick("Not supported skid executor!")
+         elseif string.find(executor,"JJSploit") then
+             game.Players.LocalPlayer:Kick("Not supported skid executor!")
+         elseif not executor then
+             game.Players.LocalPlayer:Kick("Not supported executor!")
+         else
+             game.Players.LocalPlayer:Kick("Not supported executor!")
+         end
+     end
+     pcall(function()
+         assert(getrawmetatable)
+         local grm = getrawmetatable(game)
+         local old = grm.namecall
+         setreadonly(grm, false)
+         grm.namecall = newcclosure(function(self, ...)
+             local args = {...}
+             if tostring(args[1]) == "TeleportDetect" then
+                 return
+             elseif tostring(args[1]) == "CHECKER_1" then
+                 return
+             elseif tostring(args[1]) == "CHECKER" then
+                 return
+             elseif tostring(args[1]) == "GUI_CHECK" then
+                 return
+             elseif tostring(args[1]) == "OneMoreTime" then
+                 return
+             elseif tostring(args[1]) == "checkingSPEED" then
+                 return
+             elseif tostring(args[1]) == "BANREMOTE" then
+                 return
+             elseif tostring(args[1]) == "PERMAIDBAN" then
+                 return
+             elseif tostring(args[1]) == "KICKREMOTE" then
+                 return
+             elseif tostring(args[1]) == "BR_KICKPC" then
+                 return
+             elseif tostring(args[1]) == "BR_KICKMOBILE" then
+                 return
+             end
+             return old(self, ...)
+         end)
+     end)
+
+     game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Haha Gamer Hub",
+        Text = "Loading Done!",
+        Icon = "rbxthumb://type=Asset&id=135920566704171&w=150&h=150",
+        Duration = 10
+    });
